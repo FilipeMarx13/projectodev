@@ -1,0 +1,41 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+
+<h2>Novo Cadastro</h2>
+<form action="submit" method="POST">{% csrf_token %}
+    <label>Nome</label>
+    <br>
+    <input type="text" name="nome" size="25" value="{{ cadastro_pessoa.nome }}">
+    <br>
+    <label>Sobrenome</label>
+    <br>
+    <input type="text" name="sobrenome">
+    <br>
+    <label>Idade</label>
+    <br>
+    <input type="text" name="idade">
+    <br>
+    <label>Data de Nascimento</label>
+    <br>
+    <input type="date" name="data_nascimento">
+    <br>
+    <label>E-mail</label>
+    <br>
+    <input type="email" name="email">
+    <br>
+    <label>Apelido</label>
+    <br>
+    <input type="text" name="apelido">
+    <br>
+    <label>Observação</label>
+    <br>
+    <textarea name="observacao" rows="5"></textarea>
+    <br><br>
+    <button type="submit">Salvar</button>
+    <a href="/">
+        <button type="button">Cancelar</button>
+    </a>
+</form>
+
+{% endblock%}

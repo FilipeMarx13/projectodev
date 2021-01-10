@@ -1,0 +1,18 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+    <h2>Lista de Cadastro de Pessoas</h2>
+    <a href="novocadastro/">
+         <button type="button">Novo Cadastro</button>
+    </a>
+    <ul>
+        {% for cadastropessoas in cadastropessoas %}
+            <li>
+                {{ cadastropessoas.nome }} {{ cadastropessoas.sobrenome }}
+                ( <a href="novocadastro/?id={{ cadastro_pessoa.id }}">EDITAR</a> /
+                <a href="novocadastro/delete/{{ cadastro_pessoa.id }}/">EXCLUIR</a> )
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
