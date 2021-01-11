@@ -36,8 +36,7 @@ def submit_novocadastro(request):
         email = request.POST.get('email')
         apelido = request.POST.get('apelido')
         observacao = request.POST.get('observacao')
-        id_pessoa = request.POST.get('id_pessoa')
-        #id_pessoa = request.GET.get('id_pessoa')
+        id_pessoa = request.POST.get('id_pessoa')        
         if id_pessoa:
             cadastro_pessoa.objects.filter(id=id_pessoa).update(nome=nome,
                                                                 sobrenome=sobrenome,
