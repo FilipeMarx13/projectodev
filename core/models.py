@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your models here.
-#@login_required()
+
 class cadastro_pessoa(models.Model):
     nome = models.CharField(max_length=16, null=False, verbose_name="Nome")
     sobrenome = models.CharField(max_length=32, null=False, verbose_name="Sobrenome")
@@ -18,12 +18,7 @@ class cadastro_pessoa(models.Model):
     class Meta:
         db_table = "Cadastro_Pessoas"
         ordering = ["nome", "sobrenome"]
-        #public = true
 
-
-
-    #def get_data_nascimento(self):
-        #return self.data_nascimento.strftime('%Y/%m/%d')
 
     def get_data_nascimento_input(self):
         if self.data_nascimento == None:
@@ -31,8 +26,3 @@ class cadastro_pessoa(models.Model):
         else:
             return self.data_nascimento.strftime('%Y-%m-%d')
 
-    #class Meta:
-        #return nome.objects.all().order_by()
-
-    #def __str__(self):
-       #return self.id
