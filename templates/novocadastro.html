@@ -2,40 +2,44 @@
 
 {% block content %}
 
-<h2>Novo Cadastro</h2>
-<form action="submit" method="POST">{% csrf_token %}
-    <label>Nome</label>
-    <br>
-    <input type="text" name="nome" size="25" value="{{ cadastro_pessoa.nome }}">
-    <br>
-    <label>Sobrenome</label>
-    <br>
-    <input type="text" name="sobrenome">
-    <br>
-    <label>Idade</label>
-    <br>
-    <input type="text" name="idade">
-    <br>
-    <label>Data de Nascimento</label>
-    <br>
-    <input type="date" name="data_nascimento">
-    <br>
-    <label>E-mail</label>
-    <br>
-    <input type="email" name="email">
-    <br>
-    <label>Apelido</label>
-    <br>
-    <input type="text" name="apelido">
-    <br>
-    <label>Observação</label>
-    <br>
-    <textarea name="observacao" rows="5"></textarea>
-    <br><br>
-    <button type="submit">Salvar</button>
-    <a href="/">
-        <button type="button">Cancelar</button>
-    </a>
-</form>
+<div style="padding:30px">
+    <h2>Cadastro</h2>
 
+    <form  action="submit" method="POST">{% csrf_token %}
+        <input type="number" name="id_pessoa" value="{{ cadastro_pessoa.id }}" hidden>
+        <label>Nome</label>
+        <br>
+        <input type="text" name="nome" size="25" value="{{ cadastro_pessoa.nome }}" required>
+        <br>
+        <label>Sobrenome</label>
+        <br>
+        <input type="text" name="sobrenome" value="{{ cadastro_pessoa.sobrenome }}" required>
+        <br>
+        <label>Idade</label>
+        <br>
+        <input type="text" name="idade" value="{% if cadastro_pessoa.idade != None %}{{ cadastro_pessoa.idade}}{% endif %}" required>
+        <br>
+        <label>Data de Nascimento</label>
+        <br>
+        <input type="date" name="data_nascimento" value="{{ cadastro_pessoa.get_data_nascimento_input }}" required>
+        <br>
+        <label>E-mail</label>
+        <br>
+        <input type="email" name="email" value="{{ cadastro_pessoa.email }}"required>
+        <br>
+        <label>Apelido</label>
+        <br>
+        <input type="text" name="apelido" value="{{ cadastro_pessoa.apelido }}"required>
+        <br>
+        <label>Observação</label>
+        <br>
+        <textarea name="observacao" rows="5">{% if cadastro_pessoa.observacao != None %}{{ cadastro_pessoa.observacao}}{% endif %}</textarea>
+        <br><br>
+        <button type="submit" class="btn btn-success">Salvar</button>
+
+        <a href="/">
+            <button type="button" class="btn btn-danger">Cancelar</button>
+        </a>
+    </form>
+</div>
 {% endblock%}

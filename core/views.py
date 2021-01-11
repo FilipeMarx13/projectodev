@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from core.models import cadastro_pessoa
-
+import requests
 
 # Create your views here.
 
@@ -14,7 +14,16 @@ def novocadastro(request):
     id_pessoa = request.GET.get('id')
     dados = {}
     if id_pessoa:
-       dados['novocadastro'] = cadastro_pessoa.objects.get(id=id_pessoa)
+       dados['cadastro_pessoa'] = cadastro_pessoa.objects.get(id=id_pessoa)
+    else:
+        response = requests.get("https://gerador-nomes.herokuapp.com/nome/aleatorio")
+        json = response.json()
+        pessoa = cadastro_pessoa()
+        pessoa.nome = json[0]
+        pessoa.sobrenome = json[1] + ' ' + json[2]
+        pessoa.idade = None
+        dados['cadastro_pessoa'] = pessoa
+
     return render(request, 'novocadastro.html', dados)
 
 
@@ -28,6 +37,7 @@ def submit_novocadastro(request):
         apelido = request.POST.get('apelido')
         observacao = request.POST.get('observacao')
         id_pessoa = request.POST.get('id_pessoa')
+        #id_pessoa = request.GET.get('id_pessoa')
         if id_pessoa:
             cadastro_pessoa.objects.filter(id=id_pessoa).update(nome=nome,
                                                                 sobrenome=sobrenome,

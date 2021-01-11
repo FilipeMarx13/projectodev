@@ -5,6 +5,7 @@ from core.models import cadastro_pessoa
 class pessoaadmin(admin.ModelAdmin):
     list_display = ('id', 'nome', 'sobrenome', 'idade',)
 
+
 admin.site.register(cadastro_pessoa, pessoaadmin)
 
 

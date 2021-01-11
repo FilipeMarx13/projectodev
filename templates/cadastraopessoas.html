@@ -1,18 +1,37 @@
 {% extends "model-page.html" %}
 
 {% block content %}
-    <h2>Lista de Cadastro de Pessoas</h2>
-    <a href="novocadastro/">
-         <button type="button">Novo Cadastro</button>
-    </a>
-    <ul>
-        {% for cadastropessoas in cadastropessoas %}
-            <li>
-                {{ cadastropessoas.nome }} {{ cadastropessoas.sobrenome }}
-                ( <a href="novocadastro/?id={{ cadastro_pessoa.id }}">EDITAR</a> /
-                <a href="novocadastro/delete/{{ cadastro_pessoa.id }}/">EXCLUIR</a> )
-            </li>
-        {% endfor %}
-    </ul>
 
+<div style="padding:30px">
+    <h2>Lista de Pessoas</h2>
+    <div class="float-right">
+        <a href="novocadastro/">
+             <button type="button" class="btn btn-success">Novo Cadastro</button>
+        </a>
+    </div>
+    <br>
+    <table class="table table-stiped table-bordered"> <tr><th>Nome:</th><th>Sobrenome:</th> <th>Ação</th></tr>
+        <br>
+        {% for cadastropessoas in cadastropessoas %}
+
+            <tr>
+                <td>
+                    {{ cadastropessoas.nome }}
+
+                </td>
+                <td>
+                    {{ cadastropessoas.sobrenome }}
+                </td>
+                <td>
+                    ( <a href="novocadastro/?id={{ cadastropessoas.id }}">EDITAR</a> /
+                <a href="novocadastro/delete/{{ cadastropessoas.id }}/">EXCLUIR</a> )
+                </td>
+
+            </tr>
+
+
+
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
