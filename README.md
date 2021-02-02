@@ -1,6 +1,6 @@
 # projectodev
 
-<h2>Teste prático – Projeto em Django - Cadastro de Pessoas</h2>
+<h2>Projeto em Django - Cadastro de Pessoas</h2>
 
 - Projeto para cadastro de pessoas, utilizando a linguagem de programação Python, e o framework Django.
 
